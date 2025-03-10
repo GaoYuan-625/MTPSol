@@ -1,0 +1,9 @@
+fair-esm
+biopython
+torch_geometric
+torch_scatter
+biotite
+matplotlib
+pandas
+scikit-learn
+seaborn
