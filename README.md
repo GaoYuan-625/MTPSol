@@ -1,2 +1,4 @@
 # MTPSol
-Multi modal Twin Protein Solubility Prediction Architecture Based on Pre-trained Models
+Introduction(MTPSol)
+
+Multimodal Twin Protein Solubility Prediction Architecture Based on Pre-trained Models
