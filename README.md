@@ -7,8 +7,8 @@ Fusion of **sequence, and structure** information to improve protein solubility 
 
 ## 📑 Downloads
 
-- **Download checkpoint.pth**:  
-  - Download the **checkpoint.pth** at https://...:
+- **Download Database and checkpoint.pth**:  
+  - Download the **DATA and checkpoint.pth** at [https://...:](https://huggingface.co/datasets/GaoYuan-625/MTPSol_database_and_checkpoint)
     - checkpoint.pth → `/best-checkpoints`  
 
 - **Download Model Weights**:  
