@@ -162,15 +162,21 @@ class Experiment_Single(Exp_Basic):
         )
         return criterion
 
+   
     def test(self, setting=None, flag="test"):
         test_data, test_loader = self._get_data(flag=flag)    
         self.out_path = os.path.join('./out/', setting)
 
         if setting is not None:
-            best_model_path = self.args.checkpoints
+
+            best_model_path = os.path.join(self.args.checkpoints, setting, 'checkpoint.pth')
+            # best_model_path = os.path.join('./best-checkpoints', 'checkpoint.pth')
+            # best_model_path = os.path.join(self.args.checkpoints, setting, 'last_checkpoint.pth')
+            # to adpater to different dataset
+            threshold = 0.25 if flag =='experiment' else 0.40
             self.model.load_state_dict(torch.load(best_model_path), strict=False)
             print(f"Model **********{best_model_path} ***********loaded")
-
+        
         self.model.eval()
         correct = 0
         total = 0
@@ -190,7 +196,7 @@ class Experiment_Single(Exp_Basic):
 
                 probs = torch.sigmoid(outputs).detach().cpu().numpy()
 
-                predicted = (probs >= 0.25).astype(float)
+                predicted = (probs >= threshold).astype(float)
 
                 total += labels.size(0)
                 correct += (predicted == labels.cpu().numpy()).sum()
@@ -199,7 +205,7 @@ class Experiment_Single(Exp_Basic):
                 all_labels.extend(labels.detach().cpu().numpy())
 
                 all_preds_prob.extend(probs)
-
+                
         out_path = os.path.join('./out/', setting)
         if not os.path.exists(out_path):
             os.makedirs(out_path)
